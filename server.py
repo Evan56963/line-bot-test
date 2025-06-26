@@ -45,7 +45,7 @@ def lineBot():
                 TextSendMessage(text=responseText)
             )
 
-    return ''.200
+    return '',200
 
 @app.route("/", methods=['GET'])
 def test():
