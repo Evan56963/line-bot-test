@@ -1,6 +1,7 @@
 from flask import Flask, request
 import json
 import random
+import os
 from linebot import WebhookParser, LineBotApi
 from linebot.models import MessageEvent, TextSendMessage
 
