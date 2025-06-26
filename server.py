@@ -21,8 +21,8 @@ def lineBot():
     body = request.get_data(as_text=True)
     try:
         events = parser.parse(body, signature)  # 傳入的事件
-    except:
-        return {"message": "failed"}
+    except Exception as e:
+        return '',200
 
     for event in events:
         if isinstance(event, MessageEvent):  # 如果有訊息事件
@@ -45,7 +45,7 @@ def lineBot():
                 TextSendMessage(text=responseText)
             )
 
-    return {"message": "success"}
+    return ''.200
 
 @app.route("/", methods=['GET'])
 def test():
