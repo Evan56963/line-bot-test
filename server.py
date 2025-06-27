@@ -1,7 +1,6 @@
 from flask import Flask, request
 import json
 import random
-import os
 from linebot import WebhookParser, LineBotApi
 from linebot.models import MessageEvent, TextSendMessage
 
@@ -22,7 +21,7 @@ def lineBot():
     try:
         events = parser.parse(body, signature)  # 傳入的事件
     except Exception as e:
-        return '',200
+        return {"message":"failed"}
 
     for event in events:
         if isinstance(event, MessageEvent):  # 如果有訊息事件
@@ -45,7 +44,7 @@ def lineBot():
                 TextSendMessage(text=responseText)
             )
 
-    return '',200
+    return {"message":"success"}
 
 @app.route("/", methods=['GET'])
 def test():
@@ -65,4 +64,4 @@ def test():
     return {"message": responseText}
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)
+    app.run()
