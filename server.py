@@ -1,18 +1,17 @@
 from flask import Flask, request
 import json
 import random
+import os
 from linebot import WebhookParser, LineBotApi
 from linebot.models import MessageEvent, TextSendMessage
 
 app = Flask(__name__)
 
 # line settings
-parser = WebhookParser("75069bdcd19f141d8e86437dd129107b")  # change to your line secretKey
+parser = WebhookParser(os.getenv("LINE_CHANNEL_SECRET"))  # change to your line secretKey
 
 # change to your line channel access token
-line_bot_api = LineBotApi(
-    "r3dtxCqBOw0pkkarOvnAsxDP0PDVKZhQzri0YJZXSpJf5PSEX1WpSMlvYev/oBz0VfyxEvGd5Geu+YhSjKJNmzoVRGDamXK3oj0H9QKH+jxHKJzJuUdEYdl8CZPRpoyQAl8LuMUherfoW7lC+6KDwgdB04t89/1O/w1cDnyilFU=")
-
+line_bot_api = LineBotApi(os.getenv("LINE_CHANNEL_ACCESS_TOKEN"))
 
 @app.route("/lineHook", methods=['POST'])
 def lineBot():
